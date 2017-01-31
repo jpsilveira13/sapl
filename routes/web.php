@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+# Aqui fica a rota principal ;D
+Route::get('/', 'SiteController@principal');
+
