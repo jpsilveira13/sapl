@@ -29,5 +29,9 @@ class SiteController extends Controller
         return view('site.store',compact('orgaos','modalidades','situacoes'));
     }
 
+    public function admin(){
+        return view('admin.store');
+    }
+
 
 }
