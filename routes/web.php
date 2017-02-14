@@ -60,3 +60,5 @@ Route::group(['prefix' => 'situacao'],function() {
 
 });
 
+Route::get('/scope-licitacao','SiteController@scopeLicitacao');
+

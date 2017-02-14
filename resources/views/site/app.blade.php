@@ -207,8 +207,10 @@
     <script src="js/retina.js" type="text/javascript"></script>
 
     <script src="js/jquery.nicescroll.min.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.bootpag.min.js')}}" type="text/javascript"></script>
 
     <script src="js/custom.js" type="text/javascript"></script>
+    <script src="{{asset('js/search/search.licitacao.js')}}" type="text/javascript"></script>
 
     <script language='JavaScript'>
         function SomenteNumero(e){
