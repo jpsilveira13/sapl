@@ -151,9 +151,15 @@
                             </tr>
                             </tbody>
                         </table>
-                        <div style="float: right !important;" class="column dt-sc-one-third form-inline">
-                            <a class="dt-sc-button large" href="/sapl/contrato.php">Contrato(s) <span class="fa fa-angle-right"></span></a>
-                        </div>
+                        <?php
+
+                        ?>
+
+                        @if($licitacao->situacao->nome == "CONTRATADA"))
+                            <div style="float: right !important;" class="column dt-sc-one-third form-inline">
+                                <a class="dt-sc-button large" href="{{url('')}}/{{$licitacao->id}}/contrato">Contrato(s) <span class="fa fa-angle-right"></span></a>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -163,14 +169,14 @@
 
 
 
-  <div class="pagination">
-         <div class="prev-post"> <a href="#"> <span class="fa fa-caret-left"></span> ANTERIOR </a> </div>
-         <ul>
-             <li><a href="#">1</a></li>
-             <li><a href="#">2</a></li>
-             <li><a href="#">3</a></li>
-             <li><a href="#">4</a></li>
-         </ul>
-         <div class="next-post"> <a href="#">PRÓXIMO  <span class="fa fa-caret-right"></span> </a> </div>
-     </div> 
+    <div class="pagination">
+        <div class="prev-post"> <a href="#"> <span class="fa fa-caret-left"></span> ANTERIOR </a> </div>
+        <ul>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+        </ul>
+        <div class="next-post"> <a href="#">PRÓXIMO  <span class="fa fa-caret-right"></span> </a> </div>
+    </div>
 @endsection

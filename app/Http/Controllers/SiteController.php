@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
+use sapl\Models\EmpresaContrato;
 use sapl\Models\Licitacao;
 use sapl\Models\Modalidade;
 use sapl\Models\Orgao;
@@ -17,12 +18,14 @@ class SiteController extends Controller
     private  $modalidade;
     private  $situacao;
     private $licitacao;
+    private $empresaContrato;
 
-    public function __construct(Licitacao $licitacao,Orgao $orgao, Modalidade $modalidade, Situacao $situacao){
+    public function __construct(EmpresaContrato $empresaContrato,Licitacao $licitacao,Orgao $orgao, Modalidade $modalidade, Situacao $situacao){
         $this->modalidade = $modalidade;
         $this->situacao = $situacao;
         $this->orgao = $orgao;
         $this->licitacao = $licitacao;
+        $this->empresaContrato = $empresaContrato;
     }
 
     public function principal(){
@@ -64,6 +67,13 @@ class SiteController extends Controller
         }
 
         return Response::json($query->orderBy('id','desc')->with('modalidade','orgao','situacao')->paginate(6));
+
+    }
+
+
+    public function contrato($id){
+        $contratos = $this->empresaContrato->where('licitacao_id',$id)->get();
+        return view('site.contrato',compact('contratos'));
 
     }
 

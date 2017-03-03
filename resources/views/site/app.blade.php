@@ -10,23 +10,23 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{url('images/favicon.ico')}}">
 
     <!-- **CSS - stylesheets** -->
-    <link id="default-css" rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-    <link id="shortcodes-css" rel="stylesheet" href="css/shortcodes.css" type="text/css" media="all"/>
-    <link id="skin-css" rel="stylesheet" href="skins/skyblue/style.css" type="text/css" media="all"/>
-    <link id="layer-slider" rel="stylesheet"  href="css/layerslider.css" media="all" />
+    <link id="default-css" rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" media="all" />
+    <link id="shortcodes-css" rel="stylesheet" href="{{asset('css/shortcodes.css')}}" type="text/css" media="all"/>
+    <link id="skin-css" rel="stylesheet" href="{{asset('skins/skyblue/style.css')}}" type="text/css" media="all"/>
+    <link id="layer-slider" rel="stylesheet"  href="{{asset('css/layerslider.css')}}" media="all" />
 
     <!-- **Additional - stylesheets** -->
-    <link rel="stylesheet" href="css/responsive.css" type="text/css" media="all"/>
-    <link rel="stylesheet" href="css/meanmenu.css" type="text/css" media="all"/>
-    <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="css/animations.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{{asset('css/meanmenu.css')}}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{{asset('css/prettyPhoto.css')}}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{{asset('css/animations.css')}}" type="text/css" media="all" />
 
 
     <!-- **Font Awesome** -->
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css" />
 
     <!-- **Google - Fonts** -->
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
@@ -73,7 +73,7 @@
 
                     <!-- **Logo - End** -->
                     <div id="logo">
-                        <a href="/sapl" title="Priority"> <img src="images/logo.png" alt="image"/> </a>
+                        <a href="{{url('/')}}" title="Priority"> <img src="{{url('images/logo.png')}}" alt="image"/> </a>
                     </div><!-- **Logo - End** -->
 
                     <div id="menu-container">
@@ -84,7 +84,7 @@
                                 <span class="dt-menu-toggle-icon"></span>
                             </div>
                             <ul class="menu">
-                                <li class="menu-item-simple-parent"><a href="/sapl">Home</a>
+                                <li class="menu-item-simple-parent"><a href="{{url('/')}}">Home</a>
                                 </li>
                                 <li class="menu-item-simple-parent"><a href="#">Portal Prefeitura</a>
                                 </li>
@@ -96,7 +96,7 @@
                                 </li>
                                 <li class="menu-item-simple-parent"><a href="#">Diário Oficial</a>
                                 </li>
-                                <li class="menu-item-simple-parent"><a href="/sapl/contato.php">Contato</a>
+                                <li class="menu-item-simple-parent"><a href="{{url('contato')}}">Contato</a>
                                 </li>
                             </ul>
                         </nav>
@@ -154,62 +154,62 @@
     </div><!-- **Wrapper - End** -->
 
     <!-- **jQuery** -->
-    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="js/jquery-migrate.min.js"></script>
+    <script src="{{asset('js/jquery-1.10.2.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery-migrate.min.js')}}"></script>
 
-    <script src="js/preloader.js" type="text/javascript"></script>
-    <script src="js/pace.min.js" type="text/javascript"></script>
+    <script src="{{asset('js/preloader.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/pace.min.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.tabs.min.js"></script>
-    <script src="js/jquery.tipTip.minified.js"></script>
+    <script src="{{asset('js/jquery.tabs.min.js')}}"></script>
+    <script src="{{asset('js/jquery.tipTip.minified.js')}}"></script>
 
-    <script src="js/jquery-easing-1.3.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery-easing-1.3.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.parallax-1.1.3.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.parallax-1.1.3.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.carouFredSel-6.2.1-packed.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.carouFredSel-6.2.1-packed.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.inview.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.inview.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.bxslider.min.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.bxslider.min.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.nav.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.nav.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.donutchart.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.donutchart.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.jcarousel.min.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.jcarousel.min.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.isotope.min.js" type="text/javascript"></script>
-    <script src="js/jquery.prettyPhoto.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.isotope.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.prettyPhoto.js')}}" type="text/javascript"></script>
 
-    <script src="js/masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="{{asset('js/masonry.pkgd.min.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.smartresize.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.smartresize.js')}}" type="text/javascript"></script>
 
-    <script src="js/responsive-nav.js" type="text/javascript"></script>
-    <script src="js/jquery.meanmenu.min.js" type="text/javascript"></script>
+    <script src="{{asset('js/responsive-nav.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.meanmenu.min.js')}}" type="text/javascript"></script>
 
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="js/jquery.gmap.min.js"></script>
+    <script src="{{asset('js/jquery.gmap.min.js')}}"></script>
 
     <!-- **Sticky Nav** -->
-    <script src="js/jquery.sticky.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.sticky.js')}}" type="text/javascript"></script>
 
     <!-- **To Top** -->
-    <script src="js/jquery.ui.totop.min.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.ui.totop.min.js')}}" type="text/javascript"></script>
 
-    <script type="text/javascript" src="js/twitter/jquery.tweet.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/twitter/jquery.tweet.min.js')}}"></script>
 
-    <script src="js/jquery.viewport.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.viewport.js')}}" type="text/javascript"></script>
 
-    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/jquery.validate.min.js')}}"></script>
 
-    <script src="js/retina.js" type="text/javascript"></script>
+    <script src="{{asset('js/retina.js')}}" type="text/javascript"></script>
 
-    <script src="js/jquery.nicescroll.min.js" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.nicescroll.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/jquery.bootpag.min.js')}}" type="text/javascript"></script>
 
-    <script src="js/custom.js" type="text/javascript"></script>
+    <script src="{{asset('js/custom.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/search/search.licitacao.js')}}" type="text/javascript"></script>
 
     <script language='JavaScript'>

@@ -31,8 +31,6 @@ class CreateLicitacaoTable extends Migration
             $table->foreign('situacao_id')->references('id')->on('situacao');
             $table->foreign('orgao_id')->references('id')->on('orgao');
             $table->foreign('user_id')->references('id')->on('users');
-
-
             $table->timestamps();
         });
     }

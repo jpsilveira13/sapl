@@ -1,7 +1,4 @@
 @extends('site.app')
-@section('header')
-    @include('site.header')
-@endsection
 
 @section('content')
     <div class="container">
@@ -38,8 +35,5 @@
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registrar</button>
             </form>
         </div>
-
-
     </div>
-
 @endsection

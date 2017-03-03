@@ -11,6 +11,7 @@ class Licitacao extends Model
         'user_id',
         'modalidade_id',
         'situacao_id',
+        'contrato_id',
         'orgao_id',
         'titulo',
         'comunicado',
