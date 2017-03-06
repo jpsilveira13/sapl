@@ -37,5 +37,9 @@ class Licitacao extends Model
         return $this->belongsTo(Situacao::class);
     }
 
+    public function documentos(){
+        return $this->hasMany(LicitacaoDocumento::class);
+    }
+
 
 }

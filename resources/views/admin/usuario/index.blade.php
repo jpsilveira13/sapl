@@ -8,7 +8,7 @@
 @section('content')
     <ul class="breadcrumb">
         <li><a href="{{url('sistema')}}">Home</a></li>
-        <li><a href="#">Licitações</a></li>
+        <li><a href="#">Usuários</a></li>
 
 
     </ul>
@@ -41,9 +41,9 @@
 
                     <div class="text-center">
 
-                        <a href="{{route('licitacao.create')}}"
+                        <a href="{{route('usuario.create')}}"
                            class="btn btn-primary iframe"><span
-                                    class="glyphicon glyphicon-plus-sign"></span> Nova Licitação
+                                    class="glyphicon glyphicon-plus-sign"></span> Novo Usuário
                         </a>
 
                     </div>
@@ -61,43 +61,39 @@
                     <div class="row">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a data-toggle="tab" href="#licitacao"><i class="fa fa-file-text-o" aria-hidden="true"></i> Licitações</a>
+                                <a data-toggle="tab" href="#usuarios"><i class="fa fa-file-text-o" aria-hidden="true"></i> Usuários</a>
                             </li>
 
                         </ul>
                     </div>
                     <br />
                     <div class="tab-content">
-                        <div id="licitacao" class="tab-pane fade in active">
+                        <div id="usuarios" class="tab-pane fade in active">
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                    @if($licitacoes->count() > 0)
+                                    @if($usuarios->count() > 0)
                                         <div class="table-responsive-vertical shadow-z-1">
                                             <!-- Table starts here -->
                                             <table id="tabela" class="table table-hover table-striped">
                                                 <thead>
                                                 <tr>
                                                     <th class="font-size16">ID</th>
-                                                    <th class="font-size16">Número</th>
-                                                    <th class="font-size16">Número da Modalidade</th>
-                                                    <th class="font-size16">Data de Publicação</th>
-                                                    <th class="font-size16">Local</th>
+                                                    <th class="font-size16">Email</th>
+                                                    <th class="font-size16">Nome</th>
+                                                    <th class="font-size16">Data de criação</th>
                                                     <th class="font-size16">Situação</th>
                                                     <th class="font-size16">Opções</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody id="resultado">
-                                                @foreach($licitacoes as $licitacao)
+                                                @foreach($usuarios as $usuario)
 
                                                     <tr>
-                                                        <td data-title="ID"><label class="label label-warning"> {{$licitacao->id}}</label></td>
-
-                                                        <td class="vertical-middle" data-title="Número processo">{{$licitacao->numero_processo}}</td>
-                                                        <td data-title="Número da Modalidade">{{$licitacao->titulo}}</td>
-
-                                                        <td data-title="Data de Publicação">{{ date("d/m/Y", strtotime($licitacao->data_publicacao)) }}</td>
-                                                        <td data-title="Local">{{$licitacao->local }}</td>
-                                                        <td data-title="Situação"><label class="label label-info">{{$licitacao->situacao->nome }}</label></td>
+                                                        <td data-title="ID"><label class="label label-warning"> {{$usuario->id}}</label></td>
+                                                        <td class="vertical-middle" data-title="Email">{{$usuario->email}}</td>
+                                                        <td class="vertical-middle" data-title="Nome">{{$usuario->name}}</td>
+                                                        <td data-title="Data de Criação">{{ date("d/m/Y", strtotime($usuario->created_at)) }}</td>
+                                                        <td data-title="Situação"><label class="label @if($usuario->ativo > 0) label-success @else label-danger @endif">@if($usuario->ativo == 1) Ativo @else Inativo @endif</label></td>
                                                         <td  class="text-center vertical-middle">
 
                                                             <div class="dropdown">
@@ -105,16 +101,13 @@
                                                                 <div class="dropdown">
                                                                     <a href="javascript:;" class="btn  btn-primary btn-md" data-toggle="dropdown"><i class="fa fa-plus"></i></a>
                                                                     <ul class="dropdown-menu mudar-posicao pull-right">
+
                                                                         <li>
-                                                                            <a href="{{route('licitacao.documento',['id'=> $licitacao->id])}}"><i class="fa fa-file-pdf-o"></i> Documentos</a>
+                                                                            <a href="{{route('usuario.edit',['id'=> $usuario->id])}}"><i class="fa fa-pencil-square-o"></i> Editar</a>
                                                                         </li>
                                                                         <li class="divider"></li>
                                                                         <li>
-                                                                            <a href="{{route('licitacao.edit',['id'=> $licitacao->id])}}"><i class="fa fa-pencil-square-o"></i> Editar</a>
-                                                                        </li>
-                                                                        <li class="divider"></li>
-                                                                        <li>
-                                                                            <a href="{{route('licitacao.delete',['id'=> $licitacao->id])}}"><i class="fa fa-trash-o" aria-hidden="true"></i> Deletar</a>
+                                                                            <a href="{{route('usuario.delete',['id'=> $usuario->id])}}"><i class="fa fa-trash-o" aria-hidden="true"></i> Deletar</a>
                                                                         </li>
                                                                         <li class="divider"></li>
                                                                         <li>
@@ -134,7 +127,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="text-center">
-                                                {!! $licitacoes->render() !!}
+                                                {!! $usuarios->render() !!}
                                             </div>
                                         </div>
                                     @else

@@ -70,6 +70,25 @@ Route::group(['middleware' => 'auth', 'where'=>['id'=>'[0-9]+']],function() {
             Route::post('update/{id}', ['as' => 'licitacao.update', 'uses' => 'LicitacaoController@alterarLicitacao']);
             Route::get('delete/{id}', ['as' => 'licitacao.delete', 'uses' => 'LicitacaoController@deletarLicitacao']);
 
+            Route::group(['prefix' => 'documentos'], function () {
+                Route::get('{id}/documento',['as'=>'licitacao.documento', 'uses' => 'LicitacaoController@documentos']);
+                Route::get('novo/{id}/documento',['as'=>'licitacao.documento.novo', 'uses' => 'LicitacaoController@novoDocumento']);
+                Route::post('store/{id}/documento',['as'=>'licitacao.documento.store', 'uses' => 'LicitacaoController@criarDocumento']);
+                Route::get('edit/{id}/documento', ['as' => 'licitacao.documento.edit', 'uses' => 'LicitacaoController@editarDocumento']);
+                Route::post('update/{id}/documento', ['as' => 'licitacao.documento.update', 'uses' => 'LicitacaoController@alterarDocumento']);
+                Route::get('deletar/{id}/documento',['as'=>'licitacao.documento.deletar', 'uses' => 'LicitacaoController@deletarDocumento']);
+
+            });
+        });
+
+        Route::group(['prefix' => 'usuario'], function () {
+            Route::get('/', ['as' => 'usuario', 'uses' => 'UsuarioController@usuario']);
+            Route::get('/novo', ['as' => 'usuario.create', 'uses' => 'UsuarioController@novoUsuario']);
+            Route::post('/store', ['as' => 'usuario.store', 'uses' => 'UsuarioController@salvarUsuario']);
+            Route::get('edit/{id}', ['as' => 'usuario.edit', 'uses' => 'UsuarioController@editarUsuario']);
+            Route::post('update/{id}', ['as' => 'usuario.update', 'uses' => 'UsuarioController@alterarUsuario']);
+            Route::get('delete/{id}', ['as' => 'usuario.delete', 'uses' => 'UsuarioController@deletarUsuario']);
+
         });
     });
 });

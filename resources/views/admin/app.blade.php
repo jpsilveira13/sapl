@@ -58,6 +58,7 @@
 
 <script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('admin/js/custom.min.js')}}"></script>
+<script src="{{asset('admin/js/admin.js')}}"></script>
 
 
 <script src="https://use.fontawesome.com/9a93b47e91.js"></script>

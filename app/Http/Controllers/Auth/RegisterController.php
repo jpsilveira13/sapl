@@ -66,6 +66,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'ativo' => $data['ativo'],
+            'tipo_usuario' => $data['tipo_usuario']
         ]);
     }
 }

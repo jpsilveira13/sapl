@@ -8,8 +8,8 @@
 @section('content')
     <ul class="breadcrumb">
         <li><a href="{{url('sistema')}}">Home</a></li>
-        <li><a href="#">Licitações</a></li>
-
+        <li><a href="{{route('licitacao')}}">Licitações</a></li>
+        <li><a href="#">Licitação: {{$licitacao->id}}</a> </li>
 
     </ul>
 
@@ -41,9 +41,8 @@
 
                     <div class="text-center">
 
-                        <a href="{{route('licitacao.create')}}"
-                           class="btn btn-primary iframe"><span
-                                    class="glyphicon glyphicon-plus-sign"></span> Nova Licitação
+                        <a href="{{route('licitacao.documento.novo',['id'=> $licitacao->id])}}"
+                           class="btn btn-primary iframe"><span class="glyphicon glyphicon-plus-sign"></span> Novo Documento
                         </a>
 
                     </div>
@@ -61,7 +60,7 @@
                     <div class="row">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a data-toggle="tab" href="#licitacao"><i class="fa fa-file-text-o" aria-hidden="true"></i> Licitações</a>
+                                <a data-toggle="tab" href="#licitacao"><i class="fa fa-file-text-o" aria-hidden="true"></i> Documentos</a>
                             </li>
 
                         </ul>
@@ -71,33 +70,30 @@
                         <div id="licitacao" class="tab-pane fade in active">
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                    @if($licitacoes->count() > 0)
+
                                         <div class="table-responsive-vertical shadow-z-1">
                                             <!-- Table starts here -->
                                             <table id="tabela" class="table table-hover table-striped">
                                                 <thead>
                                                 <tr>
                                                     <th class="font-size16">ID</th>
-                                                    <th class="font-size16">Número</th>
-                                                    <th class="font-size16">Número da Modalidade</th>
-                                                    <th class="font-size16">Data de Publicação</th>
-                                                    <th class="font-size16">Local</th>
-                                                    <th class="font-size16">Situação</th>
+                                                    <th class="font-size16">Título</th>
+                                                    <th class="font-size16">Data de publicação</th>
+                                                    <th class="font-size16">Tamanho</th>
                                                     <th class="font-size16">Opções</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody id="resultado">
-                                                @foreach($licitacoes as $licitacao)
+                                                @foreach($licitacao->documentos as $documento)
 
                                                     <tr>
-                                                        <td data-title="ID"><label class="label label-warning"> {{$licitacao->id}}</label></td>
+                                                        <td data-title="ID"><label class="label label-warning"> {{$documento->id}}</label></td>
 
-                                                        <td class="vertical-middle" data-title="Número processo">{{$licitacao->numero_processo}}</td>
-                                                        <td data-title="Número da Modalidade">{{$licitacao->titulo}}</td>
+                                                        <td data-title="Título">{{$documento->titulo}}</td>
 
-                                                        <td data-title="Data de Publicação">{{ date("d/m/Y", strtotime($licitacao->data_publicacao)) }}</td>
-                                                        <td data-title="Local">{{$licitacao->local }}</td>
-                                                        <td data-title="Situação"><label class="label label-info">{{$licitacao->situacao->nome }}</label></td>
+                                                        <td data-title="Data de Publicação">{{ date("d/m/Y", strtotime($documento->created_at)) }}</td>
+
+                                                        <td data-title="Tamanho"><label class="label label-danger">{{$documento->tamanho}}</label></td>
                                                         <td  class="text-center vertical-middle">
 
                                                             <div class="dropdown">
@@ -106,15 +102,11 @@
                                                                     <a href="javascript:;" class="btn  btn-primary btn-md" data-toggle="dropdown"><i class="fa fa-plus"></i></a>
                                                                     <ul class="dropdown-menu mudar-posicao pull-right">
                                                                         <li>
-                                                                            <a href="{{route('licitacao.documento',['id'=> $licitacao->id])}}"><i class="fa fa-file-pdf-o"></i> Documentos</a>
+                                                                            <a href="{{route('licitacao.documento.edit',['id'=> $documento->id])}}"><i class="fa fa-pencil-square-o"></i> Editar</a>
                                                                         </li>
                                                                         <li class="divider"></li>
                                                                         <li>
-                                                                            <a href="{{route('licitacao.edit',['id'=> $licitacao->id])}}"><i class="fa fa-pencil-square-o"></i> Editar</a>
-                                                                        </li>
-                                                                        <li class="divider"></li>
-                                                                        <li>
-                                                                            <a href="{{route('licitacao.delete',['id'=> $licitacao->id])}}"><i class="fa fa-trash-o" aria-hidden="true"></i> Deletar</a>
+                                                                            <a href="{{route('licitacao.documento.deletar',['id'=>$documento->id])}}"><i class="fa fa-trash-o" aria-hidden="true"></i> Deletar</a>
                                                                         </li>
                                                                         <li class="divider"></li>
                                                                         <li>
@@ -125,21 +117,12 @@
 
                                                             </div>
                                                         </td>
-
                                                     </tr>
                                                 @endforeach
 
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="text-center">
-                                                {!! $licitacoes->render() !!}
-                                            </div>
-                                        </div>
-                                    @else
-                                        <h2 class="text jumbotron">Não há situação cadastrada!</h2>
-                                    @endif
                                 </div>
                             </div>
                         </div>
