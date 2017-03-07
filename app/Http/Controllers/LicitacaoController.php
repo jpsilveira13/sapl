@@ -112,7 +112,7 @@ class LicitacaoController extends Controller
 
         $file = $request->file('arquivo');
         $documentosDados->tamanho = $file->getSize();
-        $documentosDados->url_pdf = str_slug($file->getClientOriginalName());
+        $documentosDados->url_pdf = str_slug($documentosDados->titulo);
         $extension = '.'.$file->getClientOriginalExtension();
 
         $file->move(public_path().'/arquivos/',$documentosDados->url_pdf.$extension);
@@ -143,7 +143,7 @@ class LicitacaoController extends Controller
                 File::delete(public_path().'/arquivos/'.$documento->url_pdf);
             }
         $documentosDados->tamanho = $file->getSize();
-        $documentosDados->url_pdf = str_slug($file->getClientOriginalName());
+        $documentosDados->url_pdf = str_slug($documentosDados->titulo);
         $extension = '.'.$file->getClientOriginalExtension();
 
         $file->move(public_path().'/arquivos/',$documentosDados->url_pdf.$extension);

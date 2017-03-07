@@ -39,15 +39,23 @@ function search(page) {
                     //  $('#page').val(data.current_page);
                     var licitacao = data.data;
                     var len = licitacao.length;
+
                     console.log(licitacao);
+
                     for(var i = 0;i<len;i++){
+                        console.log(licitacao[i].documentos);
                         html+= '<article class="blog-post type3">';
                         html+= '<div class="entry-meta"><div class="date"><p><span>26</span><br>Jan</p></div></div>';
                         html+= '<div class="entry-detail"><div class="responsive">';
                         html+='<table class="table table-bordered table-striped">';
-                        html+='<tbody><tr><th style="width: 35%;" class="text-nowrap item_lic_titulo" scope="row">'+licitacao[i].titulo+'</th><td class="item_lic_titulo item_lic_datapub text-nowrap">Publicação: 26/01/2017 14h56</td></tr><tr> <th class="item_lic_data_abertura text-nowrap" scope="row">Processo Administrativo Nº '+licitacao[i].numero_processo+'</th> <td class="item_lic_situacao">'+licitacao[i].situacao.nome+'</td> </tr><tr><th style="border-right: 2px solid #666;" class="item_lic_data_abertura text-nowrap" scope="row">Local</th> <td>'+licitacao[i].local+'</td></tr><tr><td class="alerta" colspan="4"><a>'+licitacao[i].comunicado+'</a></td></tr><tr><th style="border-right: 2px solid #666;" class="item_lic_data_abertura text-nowrap" scope="row">Objeto</th><td colspan="4">'+licitacao[i].objeto+'</td></tr>';
+                        html+='<tbody><tr><th style="width: 35%;" class="text-nowrap item_lic_titulo" scope="row">'+licitacao[i].titulo+'</th><td class="item_lic_titulo item_lic_datapub text-nowrap">Publicação: 26/01/2017</td></tr><tr> <th class="item_lic_data_abertura text-nowrap" scope="row">Processo Administrativo Nº '+licitacao[i].numero_processo+'</th> <td class="item_lic_situacao">'+licitacao[i].situacao.nome+'</td> </tr><tr><th style="border-right: 2px solid #666;" class="item_lic_data_abertura text-nowrap" scope="row">Local</th> <td>'+licitacao[i].local+'</td></tr><tr><td class="alerta" colspan="4"><a>'+licitacao[i].comunicado+'</a></td></tr><tr><th style="border-right: 2px solid #666;" class="item_lic_data_abertura text-nowrap" scope="row">Objeto</th><td colspan="4">'+licitacao[i].objeto+'</td></tr><tr> <th class="item_lic_titulo text-nowrap" scope="row"> DOCUMENTOS </th> <td class="item_lic_titulo item_lic_datapub text-nowrap"></td></tr>';
                         //aqui será o js do pdf :D
-                        html+='<tr><th style="border-right: 2px solid #666;" class="alerta text-nowrap" scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  AVISO</a></th><td colspan="4">Tamanho:  215 KB | Publicado: 16/01/2017</td></tr><tr> <th style="border-right: 2px solid #666;" class="alerta text-nowrap" scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  EDITAL</a></th><td colspan="4">Tamanho:  931 KB | Publicado: 16/01/2017</td></tr><tr><th style="border-right: 2px solid #666;" class="alerta text-nowrap" scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  AVISO DE RETIFICAÇÃO</a></th><td colspan="4">Tamanho:  184 KB | Publicado: 16/01/2017</td></tr><tr><th style="border-right: 2px solid #666;" class="alerta text-nowrap" scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  COMUNICADO</a></th><td colspan="4">Tamanho:  180 KB | Publicado: 16/01/2017</td> </tr><tr> <th style="border-right: 2px solid #666;" class="alerta text-nowrap" scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  JULGAMENTO IMPUGNAÇÃO</a></th> <td colspan="4">Tamanho:  931 KB | Publicado: 20/01/2017</td></tr>';
+                        if(licitacao[i].documentos){
+                            for(var j = 0;j<licitacao[i].documentos.length;j++){
+                                html+='<tr><th style="border-right: 2px solid #666;" class="alerta text-nowrap" scope="row"><a target="_blank" href="/arquivos/'+licitacao[i].documentos[j].url_pdf+'"><span class="fa fa-file-pdf-o iconpdf"> </span> '+licitacao[i].documentos[j].titulo+'</a></th><td colspan="4">Tamanho:  215 KB | Publicado: 16/01/2017</td></tr>';
+
+                            }
+                        }
                         html+='</tbody></table></div></div></article>';
                     }
                     jQuery('#licitacao').append(html);

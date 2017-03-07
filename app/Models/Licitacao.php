@@ -38,7 +38,7 @@ class Licitacao extends Model
     }
 
     public function documentos(){
-        return $this->hasMany(LicitacaoDocumento::class);
+        return $this->hasMany(LicitacaoDocumento::class)->orderBy('titulo','asc');
     }
 
 

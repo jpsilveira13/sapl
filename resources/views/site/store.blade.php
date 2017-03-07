@@ -99,7 +99,7 @@
                             <tbody>
                             <tr>
                                 <th style="width: 35%;" class="text-nowrap item_lic_titulo" scope="row">Pregão Presencial Nº {{$licitacao->titulo}}</th>
-                                <td class="item_lic_titulo item_lic_datapub text-nowrap">Publicação: {{ date("d/m/Y H:i:s", strtotime($licitacao->created_at)) }}</td>
+                                <td class="item_lic_titulo item_lic_datapub text-nowrap">Publicação: {{ date("d/m/Y", strtotime($licitacao->data_publicacao)) }}</td>
                             </tr>
                             <tr>
                                 <th class="item_lic_data_abertura text-nowrap" scope="row">Processo Administrativo Nº {{$licitacao->numero_processo}}</th>
@@ -120,35 +120,20 @@
                                 <th style="border-right: 2px solid #666;" class="item_lic_data_abertura text-nowrap" scope="row">Objeto</th>
                                 <td colspan="4">{{$licitacao->objeto}}</td>
                             </tr>
-                            <tr>
-                                <th class="item_lic_titulo text-nowrap" scope="row"> DOCUMENTOS </th>
-                                <td class="item_lic_titulo item_lic_datapub text-nowrap"></td>
-                            </tr>
-                            <tr>
-                                <th style="border-right: 2px solid #666;" class="alerta text-nowrap"
-                                    scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  AVISO</a></th>
-                                <td colspan="4">Tamanho:  215 KB | Publicado: 16/01/2017</td>
-                            </tr>
-                            <tr>
-                                <th style="border-right: 2px solid #666;" class="alerta text-nowrap"
-                                    scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  EDITAL</a></th>
-                                <td colspan="4">Tamanho:  931 KB | Publicado: 16/01/2017</td>
-                            </tr>
-                            <tr>
-                                <th style="border-right: 2px solid #666;" class="alerta text-nowrap"
-                                    scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  AVISO DE RETIFICAÇÃO</a></th>
-                                <td colspan="4">Tamanho:  184 KB | Publicado: 16/01/2017</td>
-                            </tr>
-                            <tr>
-                                <th style="border-right: 2px solid #666;" class="alerta text-nowrap"
-                                    scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  COMUNICADO</a></th>
-                                <td colspan="4">Tamanho:  180 KB | Publicado: 16/01/2017</td>
-                            </tr>
-                            <tr>
-                                <th style="border-right: 2px solid #666;" class="alerta text-nowrap"
-                                    scope="row"><a href=""><span class="fa fa-file-pdf-o iconpdf"> </span>  JULGAMENTO IMPUGNAÇÃO</a></th>
-                                <td colspan="4">Tamanho:  931 KB | Publicado: 20/01/2017</td>
-                            </tr>
+                            @if($licitacao->documentos)
+                                <tr>
+                                    <th class="item_lic_titulo text-nowrap" scope="row"> DOCUMENTOS </th>
+                                    <td class="item_lic_titulo item_lic_datapub text-nowrap"></td>
+                                </tr>
+                                @foreach($licitacao->documentos as $documento)
+                                    <tr>
+                                        <th style="border-right: 2px solid #666;" class="alerta text-nowrap"
+                                            scope="row"><a target="_blank" href="{{url('arquivos')}}/{{$documento->url_pdf}}"><span class="fa fa-file-pdf-o iconpdf"> </span> {{$documento->titulo}}</a></th>
+                                        <td colspan="4">Tamanho:  @if($documento->tamanho > 100000) {{substr($documento->tamanho,0,1)}} MB @else {{substr($documento->tamanho,0,3)}} KB | Publicado: {{ date("d/m/Y", strtotime($documento->created_at)) }} @endif</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
                             </tbody>
                         </table>
                         <?php
@@ -156,9 +141,9 @@
                         ?>
 
                         @if($licitacao->situacao->nome == "CONTRATADA"))
-                            <div style="float: right !important;" class="column dt-sc-one-third form-inline">
-                                <a class="dt-sc-button large" href="{{url('')}}/{{$licitacao->id}}/contrato">Contrato(s) <span class="fa fa-angle-right"></span></a>
-                            </div>
+                        <div style="float: right !important;" class="column dt-sc-one-third form-inline">
+                            <a class="dt-sc-button large" href="{{url('')}}/{{$licitacao->id}}/contrato">Contrato(s) <span class="fa fa-angle-right"></span></a>
+                        </div>
                         @endif
                     </div>
                 </div>

@@ -66,7 +66,7 @@ class SiteController extends Controller
 
         }
 
-        return Response::json($query->orderBy('id','desc')->with('modalidade','orgao','situacao')->paginate(6));
+        return Response::json($query->orderBy('id','desc')->with('modalidade','orgao','situacao','documentos')->paginate(6));
 
     }
 
