@@ -19,6 +19,8 @@ Route::get('/sistema','SiteController@admin');
 
 
 Route::get('/{id}/contrato','SiteController@contrato');
+Route::get('contato', 'SiteController@contato');
+Route::get('formulario','SiteController@formulario');
 
 Auth::routes();
 

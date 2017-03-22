@@ -4,6 +4,7 @@ namespace sapl\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use sapl\Models\EmpresaContrato;
@@ -35,7 +36,13 @@ class SiteController extends Controller
         $licitacoes = $this->licitacao->orderBy('id','desc')->paginate(6);
         $modalidades = $this->modalidade->get();
         $situacoes = $this->situacao->get();
-        return view('site.store',compact('orgaos','modalidades','situacoes','licitacoes'));
+
+        $modalidadesLateral = Licitacao::select('modalidade_id', DB::raw('COUNT(modalidade_id) as modalidade'))
+            ->groupBy('modalidade_id')
+            ->orderBy('modalidade_id', 'desc')->with('modalidade')
+            ->take(5)->get();
+      //  $modalidadesLateral = $this->modalidade->take(11)->orderBy('nome','asc')->get();
+        return view('site.store', ['orgaos' => $orgaos,'licitacoes' => $licitacoes,'modalidades'=> $modalidades,'situacoes' =>$situacoes,'modalidadesLateral' => $modalidadesLateral]);
     }
 
     public function admin(){
@@ -77,5 +84,12 @@ class SiteController extends Controller
 
     }
 
+    public function contato(){
+        return view('site.contato');
+    }
+
+    public function formulario(){
+        return view('site.formularios');
+    }
 
 }
